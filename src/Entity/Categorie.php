@@ -9,12 +9,13 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
+use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 /*#[ApiResource(operations: [new GetCollection(), new Put(), new Get()])]*/
 #[ApiResource]
 #[Post()]
-#[GetCollection()]
-#[Get]
+#[GetCollection(normalizationContext: ['groups' => ['getAll']])]
+#[Get()]
 /*#[GetCollection(normalizationContext: ['groups' => ['getAll']])]
 #[Put(normalizationContext: ['groups' => ['put']])]*/
 
@@ -25,9 +26,11 @@ class Categorie
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(['getAll'])]
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[Groups(['getAll'])]
     #[ORM\Column(length: 255)]
     private ?string $pays = null;
 
