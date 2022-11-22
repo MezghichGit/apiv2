@@ -17,11 +17,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
     new Get(),
     new GetCollection(),
     new Post(),
-])]*/
+#[Post()]])]*/
 #[ApiResource]
 #[GetCollection(normalizationContext: ['groups' => ['getAll']])]
 #[Put(normalizationContext: ['groups' => ['put']])]
-#[Post()]
+
 class Produit
 {
     #[ORM\Id]

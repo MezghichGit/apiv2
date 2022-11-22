@@ -6,9 +6,18 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\GetCollection;
-
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Post;
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
-#[ApiResource(operations: [new GetCollection()])]
+/*#[ApiResource(operations: [new GetCollection(), new Put(), new Get()])]*/
+#[ApiResource]
+#[Post()]
+#[GetCollection()]
+#[Get]
+/*#[GetCollection(normalizationContext: ['groups' => ['getAll']])]
+#[Put(normalizationContext: ['groups' => ['put']])]*/
+
 class Categorie
 {
     #[ORM\Id]
